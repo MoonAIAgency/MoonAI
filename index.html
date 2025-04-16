@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Рассчитать стоимость</title>
+
+<!-- Bootstrap, иконки, шрифт -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body{
+    background:#0c0c0f url('back.png') center/100% no-repeat fixed;
+    color:#fff;font-family:'Opeт Sans',sans-serif;font-size:20px;
+  }
+  /* временно убираем фон и логотип */
+  .no-bg     {background-image:none!important;}
+  .hide-logo {visibility:hidden!important;}
+
+  .btn-icon{width:60px;height:60px;border-radius:50%;padding:0;
+    font-size:24px;display:flex;justify-content:center;align-items:center;
+    background:#0c0c0f;border-color:#0c0c0f}
+  .btn-icon:hover{background:white;border-color:white}
+  .btn-icon>i:hover{color:black}
+  }
+
+  input[type=checkbox]{transform:scale(1.2)}
+  input[type=checkbox]:checked{accent-color:green}
+
+  .table-custom{width:100%;font-size:21px;margin-bottom:40px}
+  .table-custom td{padding:10px 0}
+  .table-custom td:nth-child(2){text-align:center}
+  .table-custom td:nth-child(3){text-align:right}
+
+  #totalCostText{height:60px;font-size:50px;padding:0 20px;
+    display:flex;align-items:center}
+
+  .block{padding:0 200px 50px}
+  .section-title{color:grey}
+  hr{opacity:.3}
+  .left-title{
+    font-size: 40px;
+  }
+
+  input[type="checkbox"]{
+  transform: scale(1.8);
+  /* чтобы курсор попадал точно в область клика: */
+  margin-right: .25rem;      /* небольшой отступ после увеличения */
+  vertical-align: middle;    /* выровнять по тексту */
+}
+
+
+  
+  .sub-block .price{color:#14ff71;font-weight:700;}
+  .sub-block .note {color:#79ffb8;font-size:0.9em;}
+  .sub-block .example{color:#14ff71;}
+.pr{
+  margin-top: 400px;
+  margin-bottom: 200px;
+}
+
+.sub-block{
+  width: 100%;
+}
+
+</style>
+</head>
+<body class="block">
+
+<!-- =================== ШАПКА ================================================= -->
+<div class="pb-5">
+  <div class="row mb-1">
+   
+
+    <div class="col-9 d-flex justify-content-between align-items-center flex-wrap gap-4">
+      <div style="flex:1;min-width:300px">
+        <div class="left-title text-uppercase">Создание ИИ для вашего бизнеса:</div>
+        <br>
+        <ul class="left-list">
+          <li>Создание нейронной сети под проект</li>
+          <li>Обучение её на базе Скриптов и FAQ</li>
+          <li>Обучение ряду сценариев поведения (CJM)</li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center gap-3" style="min-width:300px">
+        <p id="totalCostText" class="m-0">
+          <span id="totalNumber">200&nbsp;000</span>&nbsp;₸
+        </p>
+        <button class="btn btn-primary btn-icon" onclick="generatePDF()">
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+     <div class="col-3" id="logoImg">
+      <!-- логотип даём id, чтобы легко скрыть/показать -->
+      <img  src="./logo.png" style="width:100%;">
+    </div>
+  </div>
+</div>
+
+<!-- =================== ТАБЛИЦЫ ============================================= -->
+<div class="container-fluid">
+
+  <!-- ---------- Интеграции / Функции -------------------------------------- -->
+  <div class="row">
+    <div class="col-md-6 pe-md-5">
+      <div class="section-title text-uppercase">Интеграции:</div><hr>
+      <table class="table-custom">
+        <tr><td><i class="bi bi-diagram-3 me-2 text-info"></i>Amocrm</td>          <td>50&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="50000"></td></tr>
+        <tr><td><i class="bi bi-building me-2 text-primary"></i>Bitrix24</td>      <td>50&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="50000"></td></tr>
+        <tr><td><i class="bi bi-file-earmark-spreadsheet me-2 text-success"></i>Google Sheets</td><td>50&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="50000"></td></tr>
+        <tr><td><i class="bi bi-calendar-event me-2 text-warning"></i>Google Calendar</td><td>50&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="50000"></td></tr>
+      </table>
+    </div>
+
+    <div class="col-md-6 ps-md-5">
+      <div class="section-title text-uppercase">Функции</div><hr>
+      <table class="table-custom">
+        <tr><td><i class="bi bi-person-check me-2 text-success"></i>Дожим клиентов</td>          <td>10&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="10000"></td></tr>
+        <tr><td><i class="bi bi-instagram me-2 text-danger"></i>Ответ на реакции (Instagram)</td><td>10&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="10000"></td></tr>
+        <tr><td><i class="bi bi-telegram me-2 text-info"></i>Уведомление в Telegram‑группу</td>  <td>0₸</td>      <td><input type="checkbox" checked disabled data-price="0"></td></tr>
+      </table>
+    </div>
+  </div>
+
+<br> <br>
+  <!-- ---------- Каналы общения / Поддержка -------------------------------- -->
+  <div class="row">
+    <div class="col-md-6 pe-md-5">
+      <div class="section-title text-uppercase">Каналы общения</div><hr>
+      <table class="table-custom">
+        <tr><td><i class="bi bi-telegram me-2 text-info"></i>Telegram&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>  <td>30&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="30000"></td></tr>
+        <tr><td><i class="bi bi-whatsapp me-2 text-success"></i>WhatsApp</td><td>30&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="30000"></td></tr>
+        <tr><td><i class="bi bi-instagram me-2 text-danger"></i>Instagram</td><td>30&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="30000"></td></tr>
+        <tr><td><i class="bi bi-globe me-2 text-primary"></i>Website</td>   <td>30&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="30000"></td></tr>
+      </table>
+    </div>
+
+    <div class="col-md-6 ps-md-5">
+      <div class="section-title text-uppercase">Поддержка</div><hr>
+      <table class="table-custom">
+        <tr><td><i class="bi bi-life-preserver me-2 text-info"></i>Общая поддержка</td>           <td>0₸</td>          <td><input type="checkbox" checked disabled data-price="0"></td></tr>
+        <tr><td><i class="bi bi-person-gear me-2 text-warning"></i>Индивидуальная поддержка</td> <td>50&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="50000"></td></tr>
+        
+      </table>
+    </div>
+  </div>
+<br> <br>
+  <!-- ---------- Отчёты / Курсы -------------------------------------------- -->
+  <div class="row">
+    <div class="col-md-6 pe-md-5">
+      <div class="section-title text-uppercase">Отчёты</div>
+      <table class="table-custom">
+        <tr><td><i class="bi bi-file-earmark-bar-graph me-2 text-primary"></i>Ежемесячные отчёты по работе ИИ</td><td>0₸</td><td><input type="checkbox" checked disabled data-price="0"></td></tr>
+        <tr><td><i class="bi bi-calendar-week me-2 text-info"></i>Еженедельные отчёты по работе ИИ</td><td>30&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="30000"></td></tr>
+      </table>
+    </div>
+
+    <div class="col-md-6 ps-md-5">
+      <div class="section-title text-uppercase">Наши курсы</div>
+      <table class="table-custom">
+        <tr><td><i class="bi bi-journal-check me-2 text-primary"></i>Курс «Как правильно работать с базой…»</td><td class="text-decoration-line-through">70&nbsp;000₸</td><td><input type="checkbox" checked disabled data-price="0"></td></tr>
+        <tr><td><i class="bi bi-person-badge me-2 text-warning"></i>Курс для менеджеров по продажам</td>       <td class="text-decoration-line-through">120&nbsp;000₸</td><td><input type="checkbox" checked disabled data-price="0"></td></tr>
+        <tr><td><i class="bi bi-card-checklist me-2 text-success"></i>Чек‑лист «Как закрывать клиентов…»</td> <td class="text-decoration-line-through">30&nbsp;000₸</td><td><input type="checkbox" checked disabled data-price="0"></td></tr>
+        <tr><td><i class="bi bi-chat-text me-2 text-info"></i>Консалтинг по продажам в мессенджерах</td>      <td>100&nbsp;000₸</td><td><input type="checkbox" class="price-check" data-price="100000"></td></tr>
+      </table>
+    </div>
+  </div>
+
+<div class="pr">
+
+<div class="container d-flex justify-content-center">
+  <div class="sub-block text-white p-4 rounded-3 mb-5 mt-5">
+
+    <div class="text-center">
+      
+      <h2 class="fw-bold display-5 mb-3 text-uppercase ">Ежемесячная подписка</h2>
+
+      <br>
+
+    <span class="badge rounded-pill border border-1 fw-semibold px-3 py-2 mb-4">
+      от&nbsp;количества переписок
+    </span>
+    </div>
+    
+
+    <ul class="list-unstyled fs-4 lh-lg mt-5 mb-5 text-center">
+      <li>до <b>500</b> диалогов = <span class="price">100 ₸</span>/диалог <span class="note">(от 50 000 ₸)</span></li>
+      <li>до <b>1 000</b> диалогов = <span class="price">90 ₸</span>/диалог <span class="note">(до 90 000 ₸)</span></li>
+      <li>до <b>2 000</b> диалогов = <span class="price">80 ₸</span>/диалог <span class="note">(до 160 000 ₸)</span></li>
+      <li>до <b>5 000</b> диалогов = <span class="price">70 ₸</span>/диалог <span class="note">(до 350 000 ₸)</span></li>
+      <li>до <b>10 000</b> диалогов = <span class="price">60 ₸</span>/диалог <span class="note">(до 600 000 ₸)</span></li>
+      <li>больше <b>10 000</b> диалогов = <span class="price">50 ₸</span>/диалог <span class="note">(до 600 000 ₸)</span></li>
+    </ul>
+
+    <p class="mt-4 fs-5 text-center">
+      <span class="fw-semibold">Пример расчета:</span><br> <br>
+      <span class="example">30&nbsp;диалогов в сутки × 30&nbsp;дней в месяц = 900&nbsp;диалогов в месяц × 90&nbsp;₸ = 81 000 ₸</span>
+    </p>
+  </div>
+</div>
+
+</div>
+
+</div><!-- /container-fluid -->
+
+<!-- =================== СКРИПТЫ =========================================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+/* ---------- КАЛЬКУЛЯТОР -------------------------------------------------- */
+const baseCost   = 200000;
+const totalSpan  = document.getElementById('totalNumber');
+const checks     = document.querySelectorAll('.price-check');
+
+function recalc(){
+  let sum = baseCost;
+  checks.forEach(cb=>cb.checked&&(sum+=+cb.dataset.price));
+  totalSpan.textContent = sum.toLocaleString('ru-RU');
+}
+checks.forEach(cb=>cb.addEventListener('change',recalc));
+recalc();
+
+/* ---------- PDF ---------------------------------------------------------- */
+async function generatePDF(){
+  // 1. скрываем фон и логотип
+  document.body.classList.add('no-bg');
+  const logo = document.getElementById('logoImg');
+  logo.classList.add('hide-logo');
+
+  try{
+    const canvas = await html2canvas(document.body,{scale:2,useCORS:true});
+    const img    = canvas.toDataURL('image/png');
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+
+    const imgW  = pageW;
+    const imgH  = canvas.height * imgW / canvas.width;
+
+    let y = 0, hLeft = imgH;
+    pdf.addImage(img,'PNG',0,y,imgW,imgH);
+    hLeft -= pageH;
+
+    while(hLeft>0){
+      y = hLeft - imgH;
+      pdf.addPage();
+      pdf.addImage(img,'PNG',0,y,imgW,imgH);
+      hLeft -= pageH;
+    }
+    pdf.save('ai_cost_calculation.pdf');
+  }catch(e){
+    console.error(e);
+    alert('Не удалось сформировать PDF — подробности в консоли.');
+  }finally{
+    // 2. возвращаем фон и логотип
+    document.body.classList.remove('no-bg');
+    logo.classList.remove('hide-logo');
+  }
+}
+</script>
+</body>
+</html>
