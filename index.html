@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Рассчитать стоимость</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Коммерческое предложение компании MoonAI</title>
 
 <!-- Bootstrap, иконки, шрифт -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -310,7 +311,7 @@ async function generatePDF(){
       pdf.addImage(img,'PNG',0,y,imgW,imgH);
       hLeft -= pageH;
     }
-    pdf.save('Коммерческое предложение от MoonAI.pdf');
+    pdf.save('Коммерческое предложение компании MoonAI.pdf');
   }catch(e){
     console.error(e);
     alert('Не удалось сформировать PDF — подробности в консоли.');
